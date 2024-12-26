@@ -1,0 +1,4 @@
+{{- define "site-footer"}}
+    Copyright {{.CurrentYear}} {{.CompanyName}}
+    Contact: {{.SupportEmail}}
+{{- end}}

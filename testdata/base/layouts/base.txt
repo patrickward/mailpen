@@ -1,0 +1,7 @@
+{{define "layout"}}
+    {{block "header" .}}{{end}}
+    ---
+    {{block "content" .}}{{end}}
+    ---
+    {{block "footer" .}}{{end}}
+{{end}}

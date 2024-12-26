@@ -1,0 +1,28 @@
+{{define "@two-column"}}
+    <!-- Two Column Section -->
+    <table border="0" cellpadding="0" cellspacing="0" align="center" width="100%" style="max-width: 600px;">
+        <tr>
+            <td style="padding: 0 20px;">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                    {{range .Rows}}
+                        <tr>
+                            <!-- Left Column (Label) -->
+                            <td align="left" valign="top" width="200" style="padding: 10px 0;">
+                                <span style="color: #666666; font-family: Arial, sans-serif; font-size: 16px;">{{.Label}}:</span>
+                                <span style="color: #333333; font-family: Arial, sans-serif; font-size: 16px; font-weight: bold;">{{.Value}}</span>
+                            </td>
+                        </tr>
+                    {{end}}
+                </table>
+            </td>
+        </tr>
+    </table>
+{{end}}
+
+
+{{/* A version of the two-column templates that only includes text content. */}}
+{{define "@two-column-textonly"}}
+{{range .Rows}}
+    {{.Label}}: {{.Value}}
+{{end}}
+{{end}}

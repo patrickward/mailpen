@@ -1,0 +1,60 @@
+{{define "@card-grid"}}
+    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td style="padding: 0 20px 20px 20px;">
+                <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                        {{range $index, $card := .Cards}}
+                        <td width="50%" style="padding: {{if eq $index 0}}0 10px 0 0{{else}}0 0 0 10px{{end}}; vertical-align: top;">
+                            <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+                                    <td style="background-color: #ffffff; border: 1px solid #dddddd;">
+                                        {{if .ImageURL}}
+                                            <img src="{{.ImageURL}}" alt="{{.ImageAlt}}" width="100%" style="display: block; max-width: 100%; height: auto;" />
+                                        {{end}}
+                                        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                            <tr>
+                                                <td style="padding: 20px;">
+                                                    {{if .Title}}
+                                                        <p style="margin: 0 0 10px 0; color: #333333; font-family: Arial, sans-serif; font-size: 18px; font-weight: bold;">
+                                                            {{.Title}}
+                                                        </p>
+                                                    {{end}}
+                                                    {{if .Description}}
+                                                        <p style="margin: 0 0 15px 0; color: #666666; font-family: Arial, sans-serif; font-size: 14px; line-height: 21px;">
+                                                            {{.Description}}
+                                                        </p>
+                                                    {{end}}
+                                                    {{if and .LinkURL .LinkText}}
+                                                        <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                                                            <tr>
+                                                                <td>
+                                                                    <a href="{{.LinkURL}}" style="color: #0066cc; font-family: Arial, sans-serif; font-size: 14px; text-decoration: none;">
+                                                                        {{.LinkText}} →
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    {{end}}
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        {{if or (eq (num_add $index 1) (len $.Cards)) (eq (num_mod (num_add $index 1) 2) 0)}}
+                    </tr>
+                    {{if not (eq (num_add $index 1) (len $.Cards))}}
+                    <tr>
+                        <td style="font-size: 1px; line-height: 1px; height: 20px;">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        {{end}}
+                        {{end}}
+                        {{end}}
+                </table>
+            </td>
+        </tr>
+    </table>
+{{end}}

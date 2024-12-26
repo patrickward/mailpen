@@ -1,0 +1,1 @@
+{{define "content"}}Simple text email without layout{{end}}

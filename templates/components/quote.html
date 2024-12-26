@@ -1,0 +1,42 @@
+{{define "@quote"}}
+    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td style="padding: 0 20px 20px 20px;">
+                <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%"
+                       style="background-color: #f8f8f8; border-radius: 4px;">
+                    <tr>
+                        <td style="padding: 20px;">
+                            <p style="color: #333333; font-family: Arial, sans-serif; font-size: 16px; line-height: 24px; font-style: italic; margin: 0 0 15px 0;">
+                                "{{.QuoteText}}"
+                            </p>
+                            {{if or .Author .Role}}
+                                <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tr>
+                                        {{if .AuthorImage}}
+                                            <td width="40" style="padding-right: 10px;">
+                                                <img src="{{.AuthorImage}}" width="40" height="40"
+                                                     style="border-radius: 20px; display: block;" alt="{{.Author}}"/>
+                                            </td>
+                                        {{end}}
+                                        <td>
+                                            {{if .Author}}
+                                                <p style="margin: 0; color: #333333; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold;">
+                                                    {{.Author}}
+                                                </p>
+                                            {{end}}
+                                            {{if .Role}}
+                                                <p style="margin: 0; color: #666666; font-family: Arial, sans-serif; font-size: 14px;">
+                                                    {{.Role}}
+                                                </p>
+                                            {{end}}
+                                        </td>
+                                    </tr>
+                                </table>
+                            {{end}}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+{{end}}

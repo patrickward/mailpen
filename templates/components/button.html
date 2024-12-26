@@ -1,0 +1,65 @@
+{{/* This templates is used to render a button in the email. */}}
+{{/* Example: */}}
+{{/* {{templates "@button" (dict "URL" "https://example.com" "Text" "Click me!")}} */}}
+{{define "@button"}}
+    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td style="padding: 0 20px 20px 20px;">
+                <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="margin: 0 auto;">
+                    <tr>
+                        <td align="center" style="background-color: #FFA500; border-radius: 4px;">
+                            <a href="{{.URL}}"
+                               style="display: inline-block; padding: 12px 24px;
+                                       color: #ffffff; font-family: Arial, sans-serif;
+                                       font-size: 16px; font-weight: bold; text-decoration: none; text-transform: uppercase; letter-spacing: .25px;">
+                                {{.Text}}
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+{{end}}
+
+{{define "@button-danger"}}
+    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td style="padding: 0 20px 20px 20px;">
+                <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="margin: 0 auto;">
+                    <tr>
+                        <td align="center" style="background-color: #f44336; border-radius: 4px;">
+                            <a href="{{.URL}}"
+                               style="display: inline-block; padding: 12px 24px;
+                                       color: #ffffff; font-family: Arial, sans-serif;
+                                       font-size: 16px; font-weight: bold; text-decoration: none; text-transform: uppercase; letter-spacing: .25px;">
+                                {{.Text}}
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+{{end}}
+
+{{define "@button-success"}}
+    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td style="padding: 0 20px 20px 20px;">
+                <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="margin: 0 auto;">
+                    <tr>
+                        <td align="center" style="background-color: #4caf50; border-radius: 4px;">
+                            <a href="{{.URL}}"
+                               style="display: inline-block; padding: 12px 24px;
+                                       color: #ffffff; font-family: Arial, sans-serif;
+                                       font-size: 16px; font-weight: bold; text-decoration: none; text-transform: uppercase; letter-spacing: .25px;">
+                                {{.Text}}
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+{{end}}

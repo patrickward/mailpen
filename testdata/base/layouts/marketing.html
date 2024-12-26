@@ -1,0 +1,17 @@
+{{define "layout"}}
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>{{block "title" .}}Marketing Email{{end}}</title>
+    </head>
+    <body>
+    <div class="marketing-template">
+        {{block "header" .}}{{end}}
+        <div class="content">
+            {{block "content" .}}{{end}}
+        </div>
+        {{block "footer" .}}{{end}}
+    </div>
+    </body>
+    </html>
+{{end}}

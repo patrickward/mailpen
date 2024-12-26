@@ -1,0 +1,47 @@
+{{define "@footer"}}
+    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td align="center">
+                <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td class="align-center">
+                            <img src="{{.BaseURL}}/static/img/email/csf-email-banner.jpg" width="600"
+                                 height="195" alt="Spring at CSF" align="center">
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td style="padding: 30px 20px; background-color: #f8f8f8;">
+                <p style="margin: 0; color: #999999; font-family: Arial, sans-serif; font-size: 12px; line-height: 18px; text-align: center;">
+                    {{.FooterData.CopyrightText}}<br/>
+                    {{.FooterData.AddressLine1}}
+                    {{if .FooterData.AddressLine2}}
+                        <br/>{{.FooterData.AddressLine2}}
+                    {{end}}
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td style="padding: 10px 20px; background-color: #f8f8f8;">
+                <p style="margin: 0; color: #999999; font-family: Arial, sans-serif; font-size: 12px; line-height: 18px; text-align: center;">
+                    This is a transactional email from {{.FooterData.CompanyName}}. You are receiving this email because
+                    you made a reservation, signed up for a class, or requested account support. If you believe this email
+                    was sent in error, please contact us at <a href="mailto:{{.FooterData.SupportEmail}}"
+                                     style="color: #999999;">{{.FooterData.SupportEmail}}</a>.
+                </p>
+            </td>
+        </tr>
+    </table>
+{{end}}
+
+{{define "@footer-textonly"}}
+    {{.FooterData.CopyrightText}}
+    {{.FooterData.AddressLine1}}
+    {{if .FooterData.AddressLine2}}
+        {{.FooterData.AddressLine2}}
+    {{end}}
+
+    This is a transactional email from {{.FooterData.CompanyName}}. You are receiving this email because you made a reservation, signed up for a class, or requested account support. If you believe this email was sent in error, please contact us at {{.FooterData.SupportEmail}}.
+{{end}}

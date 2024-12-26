@@ -1,0 +1,16 @@
+{{define "title"}}Welcome to {{.CompanyName}}{{end}}
+
+{{define "header"}}{{template "site-header" .}}{{end}}
+
+{{define "content"}}<div class="welcome">
+    <h1>Welcome, {{.Name}}!</h1>
+    <p>We're excited to have you join us at {{.CompanyName}}.</p>
+    <p>Here are some things you can do to get started:</p>
+    <ul>
+        <li>Complete your profile</li>
+        <li>Explore our features</li>
+        <li>Contact support if you need help</li>
+    </ul>
+</div>{{end}}
+
+{{define "footer"}}{{template "site-footer" .}}{{end}}

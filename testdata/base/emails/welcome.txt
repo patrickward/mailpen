@@ -1,0 +1,12 @@
+{{define "header"}}{{template "site-header" .}}{{end}}
+
+{{define "content"}}Welcome, {{.Name}}!
+
+We're excited to have you join us at {{.CompanyName}}.
+
+Here are some things you can do to get started:
+* Complete your profile
+* Explore our features
+* Contact support if you need help{{end}}
+
+{{define "footer"}}{{template "site-footer" .}}{{end}}
