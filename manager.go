@@ -227,7 +227,7 @@ func (m *Manager) RenderEmail(name string, data interface{}, layout string) (*Re
 
 	// Try text version
 	if tmpl, err := m.getEmailTemplate(name, layout, FormatText); err == nil {
-		// Process subject
+		// Look for subject in text template
 		subject, err := m.executeTemplate(tmpl, "subject", data)
 		if err == nil {
 			email.Subject = subject
@@ -242,9 +242,10 @@ func (m *Manager) RenderEmail(name string, data interface{}, layout string) (*Re
 
 	// Try HTML version
 	if tmpl, err := m.getEmailTemplate(name, layout, FormatHTML); err == nil {
-		// Process subject, override if text version is empty
+		// Look for subject in HTML template
 		subject, err := m.executeTemplate(tmpl, "subject", data)
 		if err == nil {
+			// Use html subject if text subject was empty
 			if email.Subject == "" {
 				email.Subject = subject
 			}

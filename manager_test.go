@@ -21,7 +21,7 @@ func TestManager_RenderEmail(t *testing.T) {
 		errContains string
 	}{
 		{
-			name: "simple email with default layout",
+			name: "simple email uses the default layout",
 			sources: []mailpen.TemplateSource{
 				{
 					Name: "default",
@@ -132,7 +132,7 @@ func TestManager_RenderEmail(t *testing.T) {
 			},
 			template:    "invalid",
 			wantErr:     true,
-			errContains: "no templates found for email \"invalid\"",
+			errContains: `no such template "@doesnotexist"`,
 		},
 	}
 
