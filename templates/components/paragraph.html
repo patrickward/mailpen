@@ -1,23 +1,39 @@
-{{define "@paragraph"}}
+{{/* Paragraph components with optional alignment */}}
+{{/* Usage: */}}
+{{/* {{template "@p" "My paragraph"}} for default left alignment */}}
+{{/* {{template "@p" (dict "text" "My paragraph" "align" "center")}} for centered */}}
+{{/* {{template "@p-lead" "A more prominent paragraph"}} for lead paragraph */}}
+{{define "@p"}}
     <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
         <tr>
-            <td style="padding: 0 20px 20px 20px;">
-                <p style="font-family: Arial, sans-serif; font-size: 16px; line-height: 24px; margin: 0;">
-                    {{.}}
+            <td style="padding: 0 {{theme "spacing.4"}} {{theme "spacing.4"}} {{theme "spacing.4"}};">
+                <p style="font-family: {{theme "typography.font.family"}};
+                        font-size: {{theme "typography.font.size.base"}};
+                        line-height: {{theme "typography.font.lineHeight.relaxed"}};
+                        margin: 0;
+                        color: {{theme "colors.text.primary"}};
+                        text-align: {{if and (not (eq (printf "%T" .) "string")) .align}}{{.align}}{{else}}left{{end}};">
+                    {{if eq (printf "%T" .) "string"}}{{.}}{{else}}{{.text}}{{end}}
                 </p>
             </td>
         </tr>
     </table>
 {{end}}
 
-{{define "@paragraph-centered"}}
+{{define "@p-lead"}}
     <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
         <tr>
-            <td style="padding: 20px;">
-                <p style="font-family: Arial, sans-serif; font-size: 16px; line-height: 24px; margin: 0; text-align: center;">
-                    {{.}}
+            <td style="padding: 0 {{theme "spacing.4"}} {{theme "spacing.4"}} {{theme "spacing.4"}};">
+                <p style="font-family: {{theme "typography.font.family"}};
+                        font-size: {{theme "typography.font.size.lg"}};
+                        line-height: {{theme "typography.font.lineHeight.relaxed"}};
+                        margin: 0;
+                        color: {{theme "colors.text.secondary"}};
+                        text-align: {{if and (not (eq (printf "%T" .) "string")) .align}}{{.align}}{{else}}left{{end}};">
+                    {{if eq (printf "%T" .) "string"}}{{.}}{{else}}{{.text}}{{end}}
                 </p>
             </td>
         </tr>
     </table>
 {{end}}
+

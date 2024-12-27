@@ -1,0 +1,6 @@
+{{define "@data-table"}}
+    | {{range .Headers}} {{.Text}} | {{end}}
+    {{range .Rows}}
+        | {{range .Cells}} {{.Text}} | {{end}}
+    {{end}}
+{{end}}

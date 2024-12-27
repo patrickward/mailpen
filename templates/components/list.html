@@ -1,0 +1,43 @@
+{{/* List components */}}
+{{/* Usage: */}}
+{{/* {{template "@list" (dict "items" .Items "type" "ul")}} for unordered list */}}
+{{/* {{template "@list" (dict "items" .Items "type" "ol")}} for ordered list */}}
+{{define "@list"}}
+    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td style="padding: 0 {{theme "spacing.4"}} {{theme "spacing.4"}} {{theme "spacing.4"}};">
+                {{range $index, $item := .items}}
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                            <td width="24" valign="top" style="padding-right: {{theme "spacing.2"}};">
+                                <p style="margin: 0;
+                                        font-family: {{theme "typography.font.family"}};
+                                        font-size: {{theme "typography.font.size.base"}};
+                                        line-height: {{theme "typography.font.lineHeight.relaxed"}};
+                                        color: {{theme "colors.text.primary"}};">
+                                    {{if eq $.type "ol"}}{{add $index 1}}.{{else}}•{{end}}
+                                </p>
+                            </td>
+                            <td>
+                                <p style="margin: 0;
+                                        font-family: {{theme "typography.font.family"}};
+                                        font-size: {{theme "typography.font.size.base"}};
+                                        line-height: {{theme "typography.font.lineHeight.relaxed"}};
+                                        color: {{theme "colors.text.primary"}};">
+                                    {{$item}}
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                    {{if not (last $index $.items)}}
+                        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tr>
+                                <td style="padding-top: {{theme "spacing.2"}};"></td>
+                            </tr>
+                        </table>
+                    {{end}}
+                {{end}}
+            </td>
+        </tr>
+    </table>
+{{end}}

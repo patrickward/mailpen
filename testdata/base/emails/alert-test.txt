@@ -1,0 +1,7 @@
+{{define "content"}}
+{{.alertTitle}}
+
+{{.alertMessage}}
+
+{{.alertButton}}: {{.alertURL}}
+{{end}}

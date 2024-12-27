@@ -1,0 +1,11 @@
+{{define "subject"}}Alert Test Email{{end}}
+
+{{define "content"}}
+    {{template "@alert" (dict
+    "style" "warning"
+    "title" .alertTitle
+    "message" .alertMessage
+    "buttonText" .alertButton
+    "buttonURL" .alertURL
+    )}}
+{{end}}

@@ -1,0 +1,7 @@
+{{define "content"}}
+    {{.mainTitle}}
+
+    {{.subTitle}}
+
+    {{.smallTitle}}
+{{end}}

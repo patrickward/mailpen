@@ -9,6 +9,8 @@ import (
 	"path"
 	"strings"
 	"sync"
+
+	"github.com/patrickward/mailpen/templates"
 )
 
 const (
@@ -38,6 +40,7 @@ type Manager struct {
 	processor     HTMLProcessor
 	defaultLayout string
 	sources       []TemplateSource
+	theme         map[string]any
 	baseTemplates map[TemplateFormat]*template.Template
 	emailCache    map[string]*template.Template
 	mu            sync.RWMutex
@@ -48,6 +51,7 @@ type ManagerConfig struct {
 	FuncMap       template.FuncMap
 	Processor     HTMLProcessor
 	Sources       []TemplateSource
+	Theme         map[string]any
 	DefaultLayout string
 }
 
@@ -73,18 +77,33 @@ func NewManager(config *ManagerConfig) (*Manager, error) {
 		config.DefaultLayout = "base"
 	}
 
+	if config.Theme == nil {
+		config.Theme = DefaultTheme()
+	}
+
 	m := &Manager{
-		funcMap:       config.FuncMap,
 		processor:     config.Processor,
 		defaultLayout: config.DefaultLayout,
 		sources:       make([]TemplateSource, 0),
 		baseTemplates: make(map[TemplateFormat]*template.Template),
 		emailCache:    make(map[string]*template.Template),
+		theme:         config.Theme,
 	}
+
+	// Merge function maps
+	m.funcMap = MergeFuncMaps(DefaultFuncMap(), m.funcMap, m.themeFuncs())
 
 	// Initialize base template sets
 	m.baseTemplates[FormatText] = template.New("text-base").Funcs(m.funcMap)
 	m.baseTemplates[FormatHTML] = template.New("html-base").Funcs(m.funcMap)
+
+	// Add the built-in templates as a source
+	if err := m.AddSource(TemplateSource{
+		Name: "built-in",
+		FS:   templates.FS,
+	}); err != nil {
+		return nil, fmt.Errorf("failed to add built-in templates: %w", err)
+	}
 
 	// Add initial sources if provided
 	for _, source := range config.Sources {
@@ -344,6 +363,15 @@ func (m *Manager) AddFuncs(funcs template.FuncMap) error {
 	}
 
 	return nil
+}
+
+// themeFuncs returns the theme functions
+func (m *Manager) themeFuncs() template.FuncMap {
+	return template.FuncMap{
+		"theme": func(path string) any {
+			return GetThemeValue(m.theme, path)
+		},
+	}
 }
 
 // AddSource adds a new template source to the manager

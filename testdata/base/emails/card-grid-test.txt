@@ -1,0 +1,12 @@
+{{define "subject"}}Card Grid Test{{end}}
+
+{{define "content"}}
+Our Products
+
+{{range .cardData.Cards}}
+{{.Title}}
+{{.Description}}
+{{.LinkText}}: {{.LinkURL}}
+
+{{end}}
+{{end}}

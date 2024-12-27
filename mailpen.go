@@ -6,8 +6,6 @@ import (
 	"fmt"
 
 	gomail "github.com/wneessen/go-mail"
-
-	"github.com/patrickward/mailpen/templates"
 )
 
 var (
@@ -36,7 +34,6 @@ type Mailpen struct {
 	config        *Config
 	provider      Provider
 	templateMgr   *Manager
-	components    map[string]templates.Component
 	htmlProcessor HTMLProcessor
 }
 
@@ -65,12 +62,6 @@ func New(provider Provider, config *Config, opts ...Option) (*Mailpen, error) {
 		config:      config,
 		provider:    provider,
 		templateMgr: tm,
-		components:  make(map[string]templates.Component),
-	}
-
-	// Register built-in components
-	if err := mp.registerBuiltinComponents(); err != nil {
-		return nil, fmt.Errorf("failed to register built-in components: %w", err)
 	}
 
 	// Apply additional template sources
@@ -101,21 +92,6 @@ func (m *Mailpen) addTemplateSources(sources []TemplateSource) error {
 		}
 	}
 	return nil
-}
-
-// RegisterComponent registers a new component
-func (m *Mailpen) RegisterComponent(name string, component templates.Component) error {
-	if _, exists := m.components[name]; exists {
-		return fmt.Errorf("component %s already exists", name)
-	}
-	m.components[name] = component
-	return nil
-}
-
-// GetComponent returns a registered component by name
-func (m *Mailpen) GetComponent(name string) (templates.Component, bool) {
-	component, exists := m.components[name]
-	return component, exists
 }
 
 // Config returns the mailpen configuration
@@ -177,28 +153,6 @@ func (m *Mailpen) prepareTemplateData(data map[string]any) TemplateData {
 	data["Config"] = m.config
 
 	return data
-}
-
-// registerBuiltinComponents registers the default components
-func (m *Mailpen) registerBuiltinComponents() error {
-	//components := []struct {
-	//	name string
-	//	comp templates.Component
-	//}{
-	//	{"button", &templates.Button{}},
-	//	{"table", &templates.Table{}},
-	//	{"two-column", &templates.TwoColumn{}},
-	//	{"notification", &templates.NotificationBox{}},
-	//	// Add more built-in components here
-	//}
-	//
-	//for _, c := range components {
-	//	if err := m.RegisterComponent(c.name, c.comp); err != nil {
-	//		return err
-	//	}
-	//}
-
-	return nil
 }
 
 // mergeData merges two data maps

@@ -1,0 +1,12 @@
+{{define "content"}}
+Button Examples
+
+Default primary button:
+{{.primaryButton.Text}}: {{.primaryButton.URL}}
+
+Success button:
+{{.successButton.Text}}: {{.successButton.URL}}
+
+Danger button:
+{{.dangerButton.Text}}: {{.dangerButton.URL}}
+{{end}}

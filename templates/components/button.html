@@ -1,59 +1,24 @@
-{{/* This templates is used to render a button in the email. */}}
+{{/* This template is used to render a button in the email. */}}
 {{/* Example: */}}
-{{/* {{templates "@button" (dict "URL" "https://example.com" "Text" "Click me!")}} */}}
+{{/* {{template "@button" (dict "URL" "https://example.com" "Text" "Click me!" "Style" "primary")}} */}}
+{{/* {{template "@button" (dict "URL" "https://example.com" "Text" "Click me!" "Style" "danger")}} */}}
 {{define "@button"}}
     <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
         <tr>
-            <td style="padding: 0 20px 20px 20px;">
+            <td style="padding: 0 {{theme "spacing.4"}} {{theme "spacing.4"}} {{theme "spacing.4"}};">
                 <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="margin: 0 auto;">
                     <tr>
-                        <td align="center" style="background-color: #FFA500; border-radius: 4px;">
+                        <td align="center" style="background-color: {{with .Style}}{{theme (printf "colors.%s" .)}}{{else}}{{theme "colors.primary"}}{{end}}; border-radius: {{theme "borders.radius.md"}};">
                             <a href="{{.URL}}"
-                               style="display: inline-block; padding: 12px 24px;
-                                       color: #ffffff; font-family: Arial, sans-serif;
-                                       font-size: 16px; font-weight: bold; text-decoration: none; text-transform: uppercase; letter-spacing: .25px;">
-                                {{.Text}}
-                            </a>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
-{{end}}
-
-{{define "@button-danger"}}
-    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
-        <tr>
-            <td style="padding: 0 20px 20px 20px;">
-                <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="margin: 0 auto;">
-                    <tr>
-                        <td align="center" style="background-color: #f44336; border-radius: 4px;">
-                            <a href="{{.URL}}"
-                               style="display: inline-block; padding: 12px 24px;
-                                       color: #ffffff; font-family: Arial, sans-serif;
-                                       font-size: 16px; font-weight: bold; text-decoration: none; text-transform: uppercase; letter-spacing: .25px;">
-                                {{.Text}}
-                            </a>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-        </tr>
-    </table>
-{{end}}
-
-{{define "@button-success"}}
-    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
-        <tr>
-            <td style="padding: 0 20px 20px 20px;">
-                <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="margin: 0 auto;">
-                    <tr>
-                        <td align="center" style="background-color: #4caf50; border-radius: 4px;">
-                            <a href="{{.URL}}"
-                               style="display: inline-block; padding: 12px 24px;
-                                       color: #ffffff; font-family: Arial, sans-serif;
-                                       font-size: 16px; font-weight: bold; text-decoration: none; text-transform: uppercase; letter-spacing: .25px;">
+                               style="display: inline-block;
+                                       padding: {{theme "components.button.padding.y"}} {{theme "components.button.padding.x"}};
+                                       color: {{theme "colors.background.primary"}};
+                                       font-family: {{theme "typography.font.family"}};
+                                       font-size: {{theme "typography.font.size.base"}};
+                                       font-weight: {{theme "typography.font.weight.bold"}};
+                                       text-decoration: none;
+                                       text-transform: {{theme "components.button.textTransform"}};
+                                       letter-spacing: {{theme "typography.font.letterSpacing"}};">
                                 {{.Text}}
                             </a>
                         </td>

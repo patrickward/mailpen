@@ -1,0 +1,75 @@
+{{/* Alert box component with optional title, message, button, and style variants */}}
+{{/* Usage: */}}
+{{/* Basic: {{template "@alert" (dict "message" "A simple alert message")}} */}}
+{{/* With title: {{template "@alert" (dict "title" "Success!" "message" "Operation completed")}} */}}
+{{/* With style: {{template "@alert" (dict "style" "success" "title" "Done!" "message" "All good")}} */}}
+{{/* Full: {{template "@alert" (dict "style" "danger" "title" "Error" "message" "Please try again" "buttonText" "Retry" "buttonURL" "/retry")}} */}}
+
+{{define "@alert"}}
+    {{$style := or .style "primary"}}
+    {{$bgColor := theme (printf "colors.background.primary")}}
+    {{$borderColor := theme (printf "colors.%s" $style)}}
+    {{$textColor := theme "colors.text.primary"}}
+    {{$titleColor := theme (printf "colors.%s" $style)}}
+
+    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td style="padding: 0 {{theme "spacing.4"}} {{theme "spacing.4"}} {{theme "spacing.4"}};">
+                <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                        <td style="background-color: {{$bgColor}};
+                                border-left: 4px solid {{$borderColor}};
+                                padding: {{theme "spacing.3"}};">
+                            {{if .title}}
+                                <p style="margin: 0 0 {{theme "spacing.2"}} 0;
+                                        color: {{$titleColor}};
+                                        font-family: {{theme "typography.font.family"}};
+                                        font-size: {{theme "typography.font.size.base"}};
+                                        font-weight: {{theme "typography.font.weight.bold"}};">
+                                    {{.title}}
+                                </p>
+                            {{end}}
+
+                            <p style="margin: 0;
+                                    color: {{$textColor}};
+                                    font-family: {{theme "typography.font.family"}};
+                                    font-size: {{theme "typography.font.size.sm"}};
+                                    line-height: {{theme "typography.font.lineHeight.normal"}};">
+                                {{.message}}
+                            </p>
+
+                            {{if and .buttonText .buttonURL}}
+                                <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tr>
+                                        <td style="padding: {{theme "spacing.4"}} 0 0 0;">
+                                            <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                                                <tr>
+                                                    <td>
+                                                        <a href="{{.buttonURL}}"
+                                                           style="background-color: {{$borderColor}};
+                                                                   border: {{theme "borders.width"}} {{theme "borders.style"}} {{$borderColor}};
+                                                                   border-radius: {{theme "borders.radius.md"}};
+                                                                   color: {{theme "colors.background.primary"}};
+                                                                   display: inline-block;
+                                                                   font-family: {{theme "typography.font.family"}};
+                                                                   font-size: {{theme "typography.font.size.sm"}};
+                                                                   font-weight: {{theme "typography.font.weight.bold"}};
+                                                                   padding: {{theme "spacing.2"}} {{theme "spacing.3"}};
+                                                                   text-align: center;
+                                                                   text-decoration: none;">
+                                                            {{.buttonText}}
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            {{end}}
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+{{end}}

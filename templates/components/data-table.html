@@ -1,16 +1,21 @@
-{{/* Data table component */}}
-{{/* Example: */}}
-{{/* {{templates "@data-table (dict "Headers" .Headers "Rows" .Rows)}} */}}
 {{define "@data-table"}}
     <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
         <tr>
-            <td style="padding: 0 20px 20px 20px;">
+            <td style="padding: 0 {{theme "spacing.4"}} {{theme "spacing.4"}} {{theme "spacing.4"}};">
                 <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%"
-                       style="border: 1px solid #dddddd;">
+                       style="border: {{theme "borders.width"}} {{theme "borders.style"}} {{theme "colors.border"}};">
                     <!-- Headers -->
                     <tr>
                         {{range .Headers}}
-                            <th style="background-color: #4DA647; padding: 12px 15px; text-align: left; border-bottom: 1px solid #377a32; color: #ffffff; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; width: {{.Width}};">
+                            <th style="background-color: {{theme "colors.primary"}};
+                                    padding: {{theme "components.table.cell.padding"}};
+                                    text-align: left;
+                                    border-bottom: {{theme "borders.width"}} {{theme "borders.style"}} {{theme "colors.primaryDark"}};
+                                    color: {{theme "colors.background.primary"}};
+                                    font-family: {{theme "typography.font.family"}};
+                                    font-size: {{theme "typography.font.size.sm"}};
+                                    font-weight: {{theme "typography.font.weight.bold"}};
+                                    width: {{.Width}};">
                                 {{.Text}}
                             </th>
                         {{end}}
@@ -19,7 +24,12 @@
                     {{range .Rows}}
                         <tr>
                             {{range .Cells}}
-                                <td style="padding: 12px 15px; border-bottom: 1px solid #dddddd; color: #666666; font-family: Arial, sans-serif; font-size: 14px; width: {{.Width}};">
+                                <td style="padding: {{theme "components.table.cell.padding"}};
+                                        border-bottom: {{theme "borders.width"}} {{theme "borders.style"}} {{theme "colors.border"}};
+                                        color: {{theme "colors.text.secondary"}};
+                                        font-family: {{theme "typography.font.family"}};
+                                        font-size: {{theme "typography.font.size.sm"}};
+                                        width: {{.Width}};">
                                     {{.Text}}
                                 </td>
                             {{end}}
@@ -31,9 +41,3 @@
     </table>
 {{end}}
 
-{{define "@data-table-textonly"}}
-    | {{range .Headers}} {{.Text}} | {{end}}
-    {{range .Rows}}
-        | {{range .Cells}} {{.Text}} | {{end}}
-    {{end}}
-{{end}}

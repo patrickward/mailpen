@@ -21,7 +21,7 @@ func TestManager_RenderEmail(t *testing.T) {
 		errContains string
 	}{
 		{
-			name: "complete email with default layout",
+			name: "complete email with base layout",
 			sources: []mailpen.TemplateSource{
 				{
 					Name: "base",

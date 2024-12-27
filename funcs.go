@@ -9,6 +9,9 @@ import (
 func MergeFuncMaps(maps ...template.FuncMap) template.FuncMap {
 	result := make(template.FuncMap)
 	for _, m := range maps {
+		if m == nil {
+			continue
+		}
 		for key, value := range m {
 			result[key] = value
 		}
@@ -19,8 +22,8 @@ func MergeFuncMaps(maps ...template.FuncMap) template.FuncMap {
 // cachedFuncMap holds the cached function map for the templates package.
 var cachedFuncMap template.FuncMap
 
-// FuncMap returns the complete function map for the templates package.
-func FuncMap() template.FuncMap {
+// DefaultFuncMap returns the complete function map for the templates package.
+func DefaultFuncMap() template.FuncMap {
 	if cachedFuncMap != nil {
 		return cachedFuncMap
 	}
@@ -36,8 +39,37 @@ func FuncMap() template.FuncMap {
 // Helper functions for template functions
 func mapFuncs() template.FuncMap {
 	return template.FuncMap{
-		"map_new": newMap,
+		"map_new": newMap, // Create a new map from key-value pairs
+		"dict":    newMap, // Alias for map_new
+		"add":     intAdd,
+		"num_add": intAdd,
+		"num_mod": mod,
+		"sub":     intSub,
+		"last":    indexLast,
 	}
+}
+
+// intAdd adds two integers
+func intAdd(a, b int) int {
+	return a + b
+}
+
+// mod returns the remainder of a divided by b
+func mod(a, b int) int {
+	if b == 0 {
+		return 0
+	}
+	return a % b
+}
+
+// intSub subtracts two integers
+func intSub(a, b int) int {
+	return a - b
+}
+
+// indexLast returns true if the index is the last element in the array
+func indexLast(index int, arr []any) bool {
+	return index == len(arr)-1
 }
 
 // newMap creates a new map from key-value pairs

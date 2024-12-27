@@ -1,0 +1,11 @@
+{{define "subject"}}Logo Test Email{{end}}
+
+{{define "content"}}
+    {{template "@logo" (dict
+    "src" .logoSrc
+    "alt" .logoAlt
+    "url" .logoURL
+    )}}
+
+    {{template "@p" "Content below logo"}}
+{{end}}

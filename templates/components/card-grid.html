@@ -1,35 +1,51 @@
 {{define "@card-grid"}}
     <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
         <tr>
-            <td style="padding: 0 20px 20px 20px;">
+            <td style="padding: 0 {{theme "spacing.4"}} {{theme "spacing.4"}} {{theme "spacing.4"}};">
                 <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
                     <tr>
                         {{range $index, $card := .Cards}}
-                        <td width="50%" style="padding: {{if eq $index 0}}0 10px 0 0{{else}}0 0 0 10px{{end}}; vertical-align: top;">
+                        <td width="50%"
+                            style="padding: {{if eq $index 0}}0 {{theme "spacing.2"}} 0 0{{else}}0 0 0 {{theme "spacing.2"}}{{end}}; vertical-align: top;">
                             <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
                                 <tr>
-                                    <td style="background-color: #ffffff; border: 1px solid #dddddd;">
+                                    <td style="background-color: {{theme "colors.background.primary"}}; border: {{theme "borders.width"}} {{theme "borders.style"}} {{theme "colors.border"}};">
                                         {{if .ImageURL}}
-                                            <img src="{{.ImageURL}}" alt="{{.ImageAlt}}" width="100%" style="display: block; max-width: 100%; height: auto;" />
+                                            <img src="{{.ImageURL}}" alt="{{.ImageAlt}}" width="100%"
+                                                 style="display: block; max-width: 100%; height: auto;"/>
                                         {{end}}
-                                        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                        <table role="presentation" border="0" cellpadding="0" cellspacing="0"
+                                               width="100%">
                                             <tr>
-                                                <td style="padding: 20px;">
+                                                <td style="padding: {{theme "components.card.padding"}};">
                                                     {{if .Title}}
-                                                        <p style="margin: 0 0 10px 0; color: #333333; font-family: Arial, sans-serif; font-size: 18px; font-weight: bold;">
+                                                        <p style="margin: 0 0 {{theme "spacing.2"}} 0;
+                                                                color: {{theme "colors.text.primary"}};
+                                                                font-family: {{theme "typography.font.family"}};
+                                                                font-size: {{theme "typography.font.size.lg"}};
+                                                                font-weight: {{theme "typography.font.weight.bold"}};">
                                                             {{.Title}}
                                                         </p>
                                                     {{end}}
                                                     {{if .Description}}
-                                                        <p style="margin: 0 0 15px 0; color: #666666; font-family: Arial, sans-serif; font-size: 14px; line-height: 21px;">
+                                                        <p style="margin: 0 0 {{theme "spacing.3"}} 0;
+                                                                color: {{theme "colors.text.secondary"}};
+                                                                font-family: {{theme "typography.font.family"}};
+                                                                font-size: {{theme "typography.font.size.sm"}};
+                                                                line-height: {{theme "typography.font.lineHeight.normal"}};">
                                                             {{.Description}}
                                                         </p>
                                                     {{end}}
                                                     {{if and .LinkURL .LinkText}}
-                                                        <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                                                        <table role="presentation" border="0" cellpadding="0"
+                                                               cellspacing="0">
                                                             <tr>
                                                                 <td>
-                                                                    <a href="{{.LinkURL}}" style="color: #0066cc; font-family: Arial, sans-serif; font-size: 14px; text-decoration: none;">
+                                                                    <a href="{{.LinkURL}}"
+                                                                       style="color: {{theme "colors.primary"}};
+                                                                               font-family: {{theme "typography.font.family"}};
+                                                                               font-size: {{theme "typography.font.size.sm"}};
+                                                                               text-decoration: none;">
                                                                         {{.LinkText}} →
                                                                     </a>
                                                                 </td>
@@ -44,15 +60,15 @@
                             </table>
                         </td>
                         {{if or (eq (num_add $index 1) (len $.Cards)) (eq (num_mod (num_add $index 1) 2) 0)}}
-                    </tr>
-                    {{if not (eq (num_add $index 1) (len $.Cards))}}
-                    <tr>
-                        <td style="font-size: 1px; line-height: 1px; height: 20px;">&nbsp;</td>
-                    </tr>
-                    <tr>
+                            </tr>
+                            {{if not (eq (num_add $index 1) (len $.Cards))}}
+                                <tr>
+                                    <td style="font-size: 1px; line-height: 1px; height: {{theme "spacing.4"}};">&nbsp;</td>
+                                </tr>
+                                <tr>
+                            {{end}}
                         {{end}}
-                        {{end}}
-                        {{end}}
+                    {{end}}
                 </table>
             </td>
         </tr>

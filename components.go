@@ -8,11 +8,6 @@ import (
 
 // commonEmailData adds common data to the email data map.
 func commonTemplateData(cfg *Config, data map[string]any) map[string]any {
-	data["LogoData"] = LogoData{
-		Alt:  cfg.CompanyName,
-		Path: "/static/img/email/email-logo-csf.png",
-	}
-
 	data["FooterData"] = FooterData{
 		CompanyName:   cfg.CompanyName,
 		SupportEmail:  cfg.SupportEmail,
@@ -55,12 +50,6 @@ type TwoColumnRow struct {
 // TwoColumnData represents the data needed to render a two-column layout
 type TwoColumnData struct {
 	Rows []TwoColumnRow
-}
-
-// LogoData represents the data needed to render a logo
-type LogoData struct {
-	Path string // The full path to the logo image. The BaseURL will be prepended to this path.
-	Alt  string // The alt text for the logo image
 }
 
 // FooterData represents the data needed to render a footer
@@ -107,29 +96,4 @@ type Card struct {
 // CardGridData represents the data needed to render a card grid
 type CardGridData struct {
 	Cards []Card
-}
-
-// QuoteData represents the data needed to render a quote
-type QuoteData struct {
-	QuoteText   string
-	Author      string
-	Role        string
-	AuthorImage string
-}
-
-// PartialPaths holds the paths to the partials used in the email templates. Use this to load the partials into the templates manager.
-var PartialPaths = []string{
-	"layouts/baseHTML.html",
-	"components/button.html",
-	"components/card-grid.html",
-	"components/data-table.html",
-	"components/divider.html",
-	"components/footer.html",
-	"components/header.html",
-	"components/logo.html",
-	"components/notification-box.html",
-	"components/paragraph.html",
-	"components/quote.html",
-	"components/two-column.html",
-	"components/spacer.html",
 }

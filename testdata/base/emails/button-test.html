@@ -1,0 +1,18 @@
+{{define "subject"}}Button Test{{end}}
+
+{{define "content"}}
+    {{template "@h1" "Button Examples"}}
+
+    {{template "@p" "Default primary button:"}}
+    {{template "@button" .primaryButton}}
+
+    {{template "@p" "Success button:"}}
+    {{template "@button" .successButton}}
+
+    {{template "@p" "Danger button:"}}
+    {{template "@button" .dangerButton}}
+{{end}}
+
+{{define "text/html"}}
+    {{template "@baseHTML" .}}
+{{end}}

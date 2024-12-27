@@ -1,0 +1,5 @@
+{{define "content"}}
+{{.logoAlt}}
+
+Content below logo
+{{end}}

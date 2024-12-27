@@ -32,4 +32,5 @@ type Config struct {
 	Extensions []string         // Extensions for the templates. Defaults to []string{".html"}.
 	FuncMap    template.FuncMap // Additional template functions to add to the template engine. These will be merged with the default functions.
 	Sources    []TemplateSource // Template sources
+	Theme      map[string]any   // Theme configuration
 }
