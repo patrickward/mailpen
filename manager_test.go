@@ -21,7 +21,25 @@ func TestManager_RenderEmail(t *testing.T) {
 		errContains string
 	}{
 		{
-			name: "complete email with base layout",
+			name: "simple email with default layout",
+			sources: []mailpen.TemplateSource{
+				{
+					Name: "default",
+					FS:   testFS(t, "default"),
+				},
+			},
+			template: "simple",
+			data: map[string]any{
+				"Name": "John Doe",
+			},
+			verify: func(t *testing.T, email *mailpen.RenderedEmail) {
+				assert.Contains(t, email.HTML, "default-base-layout")
+				assert.Contains(t, email.HTML, "Default HTML email without layout")
+				assert.Contains(t, email.Text, "Default text email without layout")
+			},
+		},
+		{
+			name: "complete email with base override layout",
 			sources: []mailpen.TemplateSource{
 				{
 					Name: "base",
@@ -37,6 +55,7 @@ func TestManager_RenderEmail(t *testing.T) {
 				"CurrentYear":  2024,
 			},
 			verify: func(t *testing.T, email *mailpen.RenderedEmail) {
+				assert.Contains(t, email.HTML, "base-override-layout")
 				assert.Contains(t, email.HTML, "<title>Welcome to ACME Corp</title>")
 				assert.Contains(t, email.HTML, "Welcome, John Doe!")
 				assert.Contains(t, email.HTML, "ACME Corp")
@@ -87,7 +106,7 @@ func TestManager_RenderEmail(t *testing.T) {
 				"Name":        "John Doe",
 			},
 			verify: func(t *testing.T, email *mailpen.RenderedEmail) {
-				assert.Contains(t, email.HTML, `<div class="marketing-template">`)
+				assert.Contains(t, email.HTML, `class="marketing-override-layout"`)
 				assert.Contains(t, email.Text, "***") // Marketing text layout marker
 			},
 		},

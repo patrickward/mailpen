@@ -1,0 +1,28 @@
+{{define "layout:base"}}
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>{{block "subject" .}}Base Title{{end}}</title>
+    </head>
+    <body style="margin: 0; padding: 0; background-color: #f6f6f6; font-family: Arial, sans-serif;" class="default-base-layout">
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+                <td align="center" style="padding: 20px 0; background-color: #f6f6f6;">
+                    <!-- Main Content Container - 600px max -->
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+                        <tr>
+                            <td style="background-color: #ffffff; border: 1px solid #dddddd;">
+                                {{block "header" .}}{{end}}
+                                {{block "content" .}}{{end}}
+                                {{block "footer" .}}{{end}}
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </body>
+    </html>
+{{end}}

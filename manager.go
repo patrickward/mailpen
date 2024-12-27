@@ -227,7 +227,13 @@ func (m *Manager) RenderEmail(name string, data interface{}, layout string) (*Re
 
 	// Try text version
 	if tmpl, err := m.getEmailTemplate(name, layout, FormatText); err == nil {
-		text, err := m.executeTemplate(tmpl, "layout", data)
+		// Process subject
+		subject, err := m.executeTemplate(tmpl, "subject", data)
+		if err == nil {
+			email.Subject = subject
+		}
+
+		text, err := m.executeTemplate(tmpl, "layout:"+layout, data)
 		if err != nil {
 			return nil, fmt.Errorf("failed to render text template: %w", err)
 		}
@@ -236,7 +242,15 @@ func (m *Manager) RenderEmail(name string, data interface{}, layout string) (*Re
 
 	// Try HTML version
 	if tmpl, err := m.getEmailTemplate(name, layout, FormatHTML); err == nil {
-		html, err := m.executeTemplate(tmpl, "layout", data)
+		// Process subject, override if text version is empty
+		subject, err := m.executeTemplate(tmpl, "subject", data)
+		if err == nil {
+			if email.Subject == "" {
+				email.Subject = subject
+			}
+		}
+
+		html, err := m.executeTemplate(tmpl, "layout:"+layout, data)
 		if err != nil {
 			return nil, fmt.Errorf("failed to render HTML template: %w", err)
 		}

@@ -1,4 +1,4 @@
-{{define "layout"}}
+{{define "layout:marketing"}}
 *** {{block "header" .}}{{end}} ***
 
 {{block "content" .}}{{end}}
