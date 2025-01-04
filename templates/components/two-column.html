@@ -7,13 +7,8 @@
                     {{range .Rows}}
                         <tr>
                             <td align="left" valign="top" width="200" style="padding: 10px 0;">
-                                <span style="color: {{theme "colors.text.seconddary"}};
-                                        font-family: {{theme "typography.font.family"}};
-                                        font-size: {{theme "typography.font.size.base"}};">{{.Label}}:</span>
-                                <span style="color: {{theme "colors.text.primary"}};
-                                        font-family: {{theme "typography.font.family"}};
-                                        font-size: {{theme "typography.font.size.base"}};
-                                        font-weight: bold;">{{.Value}}</span>
+                                <span style="color: {{theme "colors.text.seconddary"}}; font-family: {{theme "typography.font.family"}}; font-size: {{theme "typography.font.size.base"}};">{{.Label}}:</span>
+                                <span style="color: {{theme "colors.text.primary"}}; font-family: {{theme "typography.font.family"}}; font-size: {{theme "typography.font.size.base"}}; font-weight: bold;">{{.Value}}</span>
                             </td>
                         </tr>
                     {{end}}

@@ -80,6 +80,7 @@ func NewManager(config *ManagerConfig) (*Manager, error) {
 	if config.Theme == nil {
 		config.Theme = DefaultTheme()
 	}
+	fmt.Println("THEME CONFIG: ", config.Theme)
 
 	m := &Manager{
 		processor:     config.Processor,
@@ -212,9 +213,8 @@ func (m *Manager) templateName(rootDir, filePath string) string {
 
 // RenderedEmail represents a rendered email
 type RenderedEmail struct {
-	Subject string
-	Text    string
-	HTML    string
+	Text string
+	HTML string
 }
 
 // RenderEmail renders an email template with optional layout
@@ -227,12 +227,6 @@ func (m *Manager) RenderEmail(name string, data interface{}, layout string) (*Re
 
 	// Try text version
 	if tmpl, err := m.getEmailTemplate(name, layout, FormatText); err == nil {
-		// Look for subject in text template
-		subject, err := m.executeTemplate(tmpl, "subject", data)
-		if err == nil {
-			email.Subject = subject
-		}
-
 		text, err := m.executeTemplate(tmpl, "layout:"+layout, data)
 		if err != nil {
 			return nil, fmt.Errorf("failed to render text template: %w", err)
@@ -242,15 +236,6 @@ func (m *Manager) RenderEmail(name string, data interface{}, layout string) (*Re
 
 	// Try HTML version
 	if tmpl, err := m.getEmailTemplate(name, layout, FormatHTML); err == nil {
-		// Look for subject in HTML template
-		subject, err := m.executeTemplate(tmpl, "subject", data)
-		if err == nil {
-			// Use html subject if text subject was empty
-			if email.Subject == "" {
-				email.Subject = subject
-			}
-		}
-
 		html, err := m.executeTemplate(tmpl, "layout:"+layout, data)
 		if err != nil {
 			return nil, fmt.Errorf("failed to render HTML template: %w", err)
@@ -263,6 +248,8 @@ func (m *Manager) RenderEmail(name string, data interface{}, layout string) (*Re
 			}
 		}
 		email.HTML = html
+	} else {
+		return nil, fmt.Errorf("failed to render HTML template: %w", err)
 	}
 
 	if email.Text == "" && email.HTML == "" {

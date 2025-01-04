@@ -17,24 +17,14 @@
             <td style="padding: 0 {{theme "spacing.4"}} {{theme "spacing.4"}} {{theme "spacing.4"}};">
                 <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
                     <tr>
-                        <td style="background-color: {{$bgColor}};
-                                border-left: 4px solid {{$borderColor}};
-                                padding: {{theme "spacing.3"}};">
+                        <td style="background-color: {{$bgColor}}; border-left: 4px solid {{$borderColor}}; padding: {{theme "spacing.3"}};">
                             {{if .title}}
-                                <p style="margin: 0 0 {{theme "spacing.2"}} 0;
-                                        color: {{$titleColor}};
-                                        font-family: {{theme "typography.font.family"}};
-                                        font-size: {{theme "typography.font.size.base"}};
-                                        font-weight: {{theme "typography.font.weight.bold"}};">
+                                <p style="margin: 0 0 {{theme "spacing.2"}} 0; color: {{$titleColor}}; font-family: {{theme "typography.font.family"}}; font-size: {{theme "typography.font.size.base"}}; font-weight: {{theme "typography.font.weight.bold"}};">
                                     {{.title}}
                                 </p>
                             {{end}}
 
-                            <p style="margin: 0;
-                                    color: {{$textColor}};
-                                    font-family: {{theme "typography.font.family"}};
-                                    font-size: {{theme "typography.font.size.sm"}};
-                                    line-height: {{theme "typography.font.lineHeight.normal"}};">
+                            <p style="margin: 0; color: {{$textColor}}; font-family: {{theme "typography.font.family"}}; font-size: {{theme "typography.font.size.sm"}}; line-height: {{theme "typography.font.lineHeight.normal"}};">
                                 {{.message}}
                             </p>
 
@@ -45,20 +35,7 @@
                                             <table role="presentation" border="0" cellpadding="0" cellspacing="0">
                                                 <tr>
                                                     <td>
-                                                        <a href="{{.buttonURL}}"
-                                                           style="background-color: {{$borderColor}};
-                                                                   border: {{theme "borders.width"}} {{theme "borders.style"}} {{$borderColor}};
-                                                                   border-radius: {{theme "borders.radius.md"}};
-                                                                   color: {{theme "colors.background.primary"}};
-                                                                   display: inline-block;
-                                                                   font-family: {{theme "typography.font.family"}};
-                                                                   font-size: {{theme "typography.font.size.sm"}};
-                                                                   font-weight: {{theme "typography.font.weight.bold"}};
-                                                                   padding: {{theme "spacing.2"}} {{theme "spacing.3"}};
-                                                                   text-align: center;
-                                                                   text-decoration: none;">
-                                                            {{.buttonText}}
-                                                        </a>
+                                                        <a href="{{.buttonURL}}" style="background-color: {{$borderColor}}; border: {{theme "borders.width"}} {{theme "borders.style"}} {{$borderColor}}; border-radius: {{theme "borders.radius.md"}}; color: {{theme "colors.background.primary"}}; display: inline-block; font-family: {{theme "typography.font.family"}}; font-size: {{theme "typography.font.size.sm"}}; font-weight: {{theme "typography.font.weight.bold"}}; padding: {{theme "spacing.2"}} {{theme "spacing.3"}}; text-align: center; text-decoration: none;">{{.buttonText}}</a>
                                                     </td>
                                                 </tr>
                                             </table>

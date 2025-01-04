@@ -84,6 +84,7 @@ func New(config *Config, opts ...Option) (*Provider, error) {
 // Send implements mailpen.Provider
 func (p *Provider) Send(ctx context.Context, msg *mailpen.Message) error {
 	email := gomail.NewMsg()
+	email.Subject(msg.Subject)
 
 	if err := p.setAddresses(email, msg); err != nil {
 		return err

@@ -19,14 +19,7 @@
                             {{if .url}}
                             <a href="{{.url}}">
                                 {{end}}
-                                <img src="{{.src}}"
-                                     {{with .width}}width="{{.}}"{{end}}
-                                        {{with .height}}height="{{.}}"{{end}}
-                                     alt="{{.alt}}"
-                                     align="center"
-                                     style="display: block; max-width: {{theme "components.logo.maxWidth"}};">
-                                {{if .url}}
-                            </a>
+                                <img src="{{.src}}" {{with .width}}width="{{.}}"{{end}} {{with .height}}height="{{.}}"{{end}} alt="{{.alt}}" align="center" style="display: block; max-width: {{theme "components.logo.maxWidth"}};"> {{if .url}} </a>
                             {{end}}
                         </td>
                     </tr>

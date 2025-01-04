@@ -9,18 +9,7 @@
                 <table role="presentation" border="0" cellpadding="0" cellspacing="0" style="margin: 0 auto;">
                     <tr>
                         <td align="center" style="background-color: {{with .Style}}{{theme (printf "colors.%s" .)}}{{else}}{{theme "colors.primary"}}{{end}}; border-radius: {{theme "borders.radius.md"}};">
-                            <a href="{{.URL}}"
-                               style="display: inline-block;
-                                       padding: {{theme "components.button.padding.y"}} {{theme "components.button.padding.x"}};
-                                       color: {{theme "colors.background.primary"}};
-                                       font-family: {{theme "typography.font.family"}};
-                                       font-size: {{theme "typography.font.size.base"}};
-                                       font-weight: {{theme "typography.font.weight.bold"}};
-                                       text-decoration: none;
-                                       text-transform: {{theme "components.button.textTransform"}};
-                                       letter-spacing: {{theme "typography.font.letterSpacing"}};">
-                                {{.Text}}
-                            </a>
+                            <a href="{{.URL}}" style="display: inline-block; padding: {{theme "components.button.padding.y"}} {{theme "components.button.padding.x"}}; color: {{theme "colors.background.primary"}}; font-family: {{theme "typography.font.family"}}; font-size: {{theme "typography.font.size.base"}}; font-weight: {{theme "typography.font.weight.bold"}}; text-decoration: none; text-transform: {{theme "components.button.textTransform"}}; letter-spacing: {{theme "typography.font.letterSpacing"}};">{{.Text}}</a>
                         </td>
                     </tr>
                 </table>

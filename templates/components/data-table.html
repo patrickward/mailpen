@@ -7,31 +7,14 @@
                     <!-- Headers -->
                     <tr>
                         {{range .Headers}}
-                            <th style="background-color: {{theme "colors.primary"}};
-                                    padding: {{theme "components.table.cell.padding"}};
-                                    text-align: left;
-                                    border-bottom: {{theme "borders.width"}} {{theme "borders.style"}} {{theme "colors.primaryDark"}};
-                                    color: {{theme "colors.background.primary"}};
-                                    font-family: {{theme "typography.font.family"}};
-                                    font-size: {{theme "typography.font.size.sm"}};
-                                    font-weight: {{theme "typography.font.weight.bold"}};
-                                    width: {{.Width}};">
-                                {{.Text}}
-                            </th>
+                            <th style="background-color: {{theme "colors.primary"}}; padding: {{theme "components.table.cell.padding"}}; text-align: left; border-bottom: {{theme "borders.width"}} {{theme "borders.style"}} {{theme "colors.primaryDark"}}; color: {{theme "colors.background.primary"}}; font-family: {{theme "typography.font.family"}}; font-size: {{theme "typography.font.size.sm"}}; font-weight: {{theme "typography.font.weight.bold"}}; width: {{.Width}};"> {{.Text}} </th>
                         {{end}}
                     </tr>
                     <!-- Data Rows -->
                     {{range .Rows}}
                         <tr>
                             {{range .Cells}}
-                                <td style="padding: {{theme "components.table.cell.padding"}};
-                                        border-bottom: {{theme "borders.width"}} {{theme "borders.style"}} {{theme "colors.border"}};
-                                        color: {{theme "colors.text.secondary"}};
-                                        font-family: {{theme "typography.font.family"}};
-                                        font-size: {{theme "typography.font.size.sm"}};
-                                        width: {{.Width}};">
-                                    {{.Text}}
-                                </td>
+                                <td style="padding: {{theme "components.table.cell.padding"}}; border-bottom: {{theme "borders.width"}} {{theme "borders.style"}} {{theme "colors.border"}}; color: {{theme "colors.text.secondary"}}; font-family: {{theme "typography.font.family"}}; font-size: {{theme "typography.font.size.sm"}}; width: {{.Width}};"> {{.Text}} </td>
                             {{end}}
                         </tr>
                     {{end}}

@@ -29,8 +29,8 @@ type Config struct {
 	SocialMediaLinks map[string]string // Social media links
 
 	// Template configuration
-	Extensions []string         // Extensions for the templates. Defaults to []string{".html"}.
-	FuncMap    template.FuncMap // Additional template functions to add to the template engine. These will be merged with the default functions.
-	Sources    []TemplateSource // Template sources
-	Theme      map[string]any   // Theme configuration
+	FuncMap       template.FuncMap // Additional template functions to add to the template engine. These will be merged with the default functions.
+	Sources       []TemplateSource // Template sources
+	Theme         map[string]any   // Theme configuration
+	DefaultLayout string           // Default layout to use for emails (defaults to "base")
 }

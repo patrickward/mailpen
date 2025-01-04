@@ -48,9 +48,11 @@ func New(provider Provider, config *Config, opts ...Option) (*Mailpen, error) {
 	}
 
 	tmOpts := &ManagerConfig{
-		FuncMap:   config.FuncMap,
-		Processor: config.HTMLProcessor,
-		Sources:   config.Sources,
+		FuncMap:       config.FuncMap,
+		Processor:     config.HTMLProcessor,
+		Sources:       config.Sources,
+		Theme:         config.Theme,
+		DefaultLayout: config.DefaultLayout,
 	}
 
 	tm, err := NewManager(tmOpts)
@@ -128,10 +130,6 @@ func (m *Mailpen) processTemplates(msg *Message) error {
 	rendered, err := m.templateMgr.RenderEmail(msg.Template, data, msg.Layout)
 	if err != nil {
 		return fmt.Errorf("failed to render email: %w", err)
-	}
-
-	if rendered.Subject != "" {
-		msg.Subject = rendered.Subject
 	}
 
 	if rendered.Text != "" {
