@@ -80,7 +80,6 @@ func NewManager(config *ManagerConfig) (*Manager, error) {
 	if config.Theme == nil {
 		config.Theme = DefaultTheme()
 	}
-	fmt.Println("THEME CONFIG: ", config.Theme)
 
 	m := &Manager{
 		processor:     config.Processor,
